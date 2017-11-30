@@ -32,6 +32,7 @@ namespace Complete
         private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 		public GameObject sphere;
 
+        public Canvas menu;
         private void Start()
         {
             // Create the delays so they only have to be made once.
@@ -49,17 +50,7 @@ namespace Complete
 
 		}
 		void Update() {
-			if (Input.GetKeyDown (KeyCode.Escape)) {
-				if (Time.timeScale == 0) {
-					Time.timeScale = 1;
-					EnableTankControl ();
-					m_Enemy.StartSpawn ();
-				} else {
-					Time.timeScale = 0;
-					DisableTankControl ();
-					m_Enemy.PauseSpawn ();
-				}
-			}
+
 		}
 		private void FixedUpdate(){
 			
@@ -317,6 +308,14 @@ namespace Complete
             {
                 m_Tanks[i].DisableControl();
             }
+        }
+
+        public void OnPause(bool isPause)
+        {
+            if (isPause)
+                DisableTankControl();
+            else
+                EnableTankControl();
         }
     }
 }

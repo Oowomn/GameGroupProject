@@ -2,17 +2,29 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+
+
+[System.Serializable]
+public class PauseEvnet : UnityEvent<bool>
+{
+}
 
 public class PauseManager : MonoBehaviour {
 	
 	public AudioMixerSnapshot paused;
 	public AudioMixerSnapshot unpaused;
-	
+
+    public PauseEvnet OnPause;
+
 	Canvas canvas;
 	
+
+
 	void Start()
 	{
 		canvas = GetComponent<Canvas>();
@@ -23,7 +35,8 @@ public class PauseManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			canvas.enabled = !canvas.enabled;
-			Pause();
+            OnPause.Invoke(canvas.enabled);
+            Time.timeScale = canvas.enabled ? 0 : 1;
 		}
 	}
 	
@@ -50,10 +63,8 @@ public class PauseManager : MonoBehaviour {
 	
 	public void Quit()
 	{
-		#if UNITY_EDITOR 
-		EditorApplication.isPlaying = false;
-		#else 
-		Application.Quit();
-		#endif
+        // back to lobby
+        SceneManager.LoadScene(0);
 	}
 }
+
