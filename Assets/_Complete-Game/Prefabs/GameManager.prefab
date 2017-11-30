@@ -98,7 +98,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -122,7 +122,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!114 &114054503748889128
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 0}
   m_Enemy: {fileID: 0}
   RemainTime: 180
+  health: {fileID: 0}
   sphere: {fileID: 0}
 --- !u!114 &114618219004450894
 MonoBehaviour:
