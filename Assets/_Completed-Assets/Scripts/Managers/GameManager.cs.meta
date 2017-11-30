@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 54a000792783c934885973b761b3f96f
+timeCreated: 1511979111
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - m_CameraControl: {instanceID: 0}
+  - m_MessageText: {instanceID: 0}
+  - m_TankPrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
