@@ -22,6 +22,9 @@ namespace CompleteProject
 		public void StartSpawn(){
 			InvokeRepeating ("Spawning", spawnTime, spawnTime);
 		}
+		public void PauseSpawn(){
+			CancelInvoke ();
+		}
 		public void EndSpawn(){
 			CancelInvoke ();
 			foreach (GameObject a in enemylist) {

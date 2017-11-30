@@ -47,7 +47,20 @@ namespace Complete
             // Once the tanks have been created and the camera is using them as targets, start the game.
             StartCoroutine (GameLoop ());
 
-        }
+		}
+		void Update() {
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				if (Time.timeScale == 0) {
+					Time.timeScale = 1;
+					EnableTankControl ();
+					m_Enemy.StartSpawn ();
+				} else {
+					Time.timeScale = 0;
+					DisableTankControl ();
+					m_Enemy.PauseSpawn ();
+				}
+			}
+		}
 		private void FixedUpdate(){
 			
 			RemainTime -= Time.deltaTime;
