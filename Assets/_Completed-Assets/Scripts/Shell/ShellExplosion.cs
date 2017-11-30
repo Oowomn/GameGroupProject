@@ -42,14 +42,20 @@ namespace Complete
                 TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth> ();
 
                 // If there is no TankHealth script attached to the gameobject, go on to the next collider.
-                if (!targetHealth)
-                    continue;
+				if (targetHealth) {
+					// Calculate the amount of damage the target should take based on it's distance from the shell.
+					float damage = CalculateDamage (targetRigidbody.position);
+				
+					// Deal this damage to the tank.
+					targetHealth.TakeDamage (damage);
+				}
+				CompleteProject.EnemyHealth enemyHealth = targetRigidbody.GetComponent<CompleteProject.EnemyHealth> ();
+				if (enemyHealth) {
 
-                // Calculate the amount of damage the target should take based on it's distance from the shell.
-                float damage = CalculateDamage (targetRigidbody.position);
-
-                // Deal this damage to the tank.
-                targetHealth.TakeDamage (damage);
+					// Calculate the amount of damage the target should take based on it's distance from the shell.
+					//damage = CalculateDamage (targetRigidbody.position);
+					enemyHealth.TakeDamage (100, targetRigidbody.position);
+				}
             }
 
             // Unparent the particles from the shell.

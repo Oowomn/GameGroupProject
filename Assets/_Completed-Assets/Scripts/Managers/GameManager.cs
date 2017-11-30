@@ -53,19 +53,11 @@ namespace Complete
 			RemainTime -= Time.deltaTime;
 			System.TimeSpan ts = System.TimeSpan.FromSeconds (RemainTime);
 			m_time.text = string.Format ("{0:D2}:{1:D2}:{2:D2}", ts.Hours, ts.Minutes, ts.Seconds);
-			int remainenemy = 0;
+
 			if (m_Tanks [0] != null)
 				health.GetComponent<Slider> ().value = m_Tanks [0].m_Instance.GetComponent<Complete.TankHealth> ().CurrentHealth;
 				
-			if (m_Enemys [0] != null) {
-				 
-				for (int i = 0; i < m_Enemys.Length; i++) {
-				
-					if (m_Enemys [i].enemy.GetComponent<EnemyHealth> ().currentHealth > 0)
-						remainenemy++;
-				}
-				m_enemesCount.text = "Remain:" + remainenemy.ToString ();
-			}
+
 		}
         private void SpawnAllTanks()
         {
@@ -85,7 +77,7 @@ namespace Complete
 		private void SpawnAllEnemy()
 		{
 			
-			m_Enemy = new CompleteProject.EnemyManager ();
+
 			//m_Enemy.Setup ();
 			//for (int i = 0; i < m_Enemys.Length; i++)
 			//{
@@ -150,7 +142,7 @@ namespace Complete
             // As soon as the round starts reset the tanks and make sure they can't move.
             ResetAllTanks ();
             DisableTankControl ();
-
+			m_Enemy.StartSpawn ();
             // Snap the camera's zoom and position to something appropriate for the reset tanks.
             m_CameraControl.SetStartPositionAndSize ();
 
@@ -185,7 +177,7 @@ namespace Complete
 			
             // Stop tanks from moving.
             DisableTankControl ();
-
+			m_Enemy.EndSpawn ();
             // Clear the winner from the previous round.
             m_RoundWinner = null;
 
