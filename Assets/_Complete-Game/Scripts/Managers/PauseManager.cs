@@ -43,7 +43,8 @@ public class PauseManager : MonoBehaviour {
 	public void Pause()
 	{
 		Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-		Lowpass ();
+        OnPause.Invoke(canvas.enabled);
+        Lowpass ();
 		
 	}
 	

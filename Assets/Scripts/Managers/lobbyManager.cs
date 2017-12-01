@@ -15,6 +15,7 @@ public class lobbyManager : MonoBehaviour {
 
     public Button btn_place1;
     public Button btn_place2;
+    public Button btn_start;
     public Text HighestScoreText;
 
     private PlayerProgrss playerProgess;
@@ -47,6 +48,12 @@ public class lobbyManager : MonoBehaviour {
 	void Update () {
 
         HighestScoreText.text = "Highest Score : " + playerProgess.higestScose;
+    }
+
+    public void startGame()
+    {
+        mode = 1;
+        getMode();
     }
 
     public void EasyLvl() {
@@ -105,6 +112,10 @@ public class lobbyManager : MonoBehaviour {
         {
             Debug.Log("1");
             setttingTitle.text = "LEVEL";
+
+            btn_start.interactable = false;
+            btn_start.gameObject.SetActive(false);
+
             btn_place1.interactable = false;
             btn_place1.gameObject.SetActive(false);
             btn_place2.interactable = false;
@@ -119,10 +130,14 @@ public class lobbyManager : MonoBehaviour {
 
 
         }
-        else
+        else if(mode ==2 )
         {
             Debug.Log("2");
             setttingTitle.text = "VENUE";
+
+            btn_start.interactable = false;
+            btn_start.gameObject.SetActive(false);
+
             btn_place1.interactable = true;
             btn_place1.gameObject.SetActive(true);
             btn_place2.interactable = true;
@@ -135,15 +150,34 @@ public class lobbyManager : MonoBehaviour {
             btn_hard.interactable = false;
             btn_hard.gameObject.SetActive(false);
         }
+        else
+        {
+            setttingTitle.text = "ATTACK ON ZOMBIES";
+            btn_start.interactable = true;
+            btn_start.gameObject.SetActive(true);
+
+            btn_place1.interactable = false;
+            btn_place1.gameObject.SetActive(false);
+            btn_place2.interactable = false;
+            btn_place2.gameObject.SetActive(false);
+
+            btn_easy.interactable = false;
+            btn_easy.gameObject.SetActive(false);
+            btn_normal.interactable = false;
+            btn_normal.gameObject.SetActive(false);
+            btn_hard.interactable = false;
+            btn_hard.gameObject.SetActive(false);
+        }
+
     }
 
 
 
     public void Quit()
     {
-        if (mode == 2)
+        if (mode >= 1)
         {
-            mode = 1;
+            mode--;
             getMode();
         }
         else {
