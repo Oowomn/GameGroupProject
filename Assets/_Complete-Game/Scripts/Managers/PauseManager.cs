@@ -64,6 +64,7 @@ public class PauseManager : MonoBehaviour {
 	public void Quit()
 	{
         // back to lobby
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
 	}
 }
