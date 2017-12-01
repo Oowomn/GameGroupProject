@@ -31,7 +31,7 @@ namespace Complete
         private TankManager m_RoundWinner;          // Reference to the winner of the current round.  Used to make an announcement of who won.
         private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 		public GameObject sphere;
-
+        public Text LifeLeft;
         private int m_gameLevel; //0:easy; 1:normal; 2:hard 
 
         public Canvas menu;
@@ -56,13 +56,19 @@ namespace Complete
 
 		}
 		private void FixedUpdate(){
-			
-			RemainTime -= Time.deltaTime;
+
+            if (RemainTime > 0)
+                RemainTime -= Time.deltaTime;
+            else
+                RemainTime = 0;
 			System.TimeSpan ts = System.TimeSpan.FromSeconds (RemainTime);
 			m_time.text = string.Format ("{0:D2}:{1:D2}:{2:D2}", ts.Hours, ts.Minutes, ts.Seconds);
 
-			if (m_Tanks [0] != null)
-				health.GetComponent<Slider> ().value = m_Tanks [0].m_Instance.GetComponent<Complete.TankHealth> ().CurrentHealth;
+            if (m_Tanks[0] != null)
+            {
+                health.GetComponent<Slider>().value = m_Tanks[0].m_Instance.GetComponent<Complete.TankHealth>().CurrentHealth;
+                LifeLeft.text = "Life left: "+ m_Tanks[0].lifeLeft;
+            }
 				
 
 		}
@@ -130,9 +136,11 @@ namespace Complete
             yield return StartCoroutine (RoundEnding());
 
             // This code is not run until 'RoundEnding' has finished.  At which point, check if a game winner has been found.
-            if (m_GameWinner != null)
+            if (m_Tanks[0].lifeLeft == 0||RemainTime <= 0)
             {
-                // If there is a game winner, restart the level.
+                SubmitScore(CompleteProject.ScoreManager.score);
+
+                // End Game return to lobby
                 SceneManager.LoadScene (0);
             }
             else
@@ -171,7 +179,7 @@ namespace Complete
             m_MessageText.text = string.Empty;
 
             // While there is not one tank left...
-			while (!NoTankLeft())
+			while (!NoTankLeft() && RemainTime>0)
             {
                 // ... return on the next frame.
                 yield return null;
@@ -190,7 +198,8 @@ namespace Complete
 
             // See if there is a winner now the round is over.
             m_RoundWinner = GetRoundWinner ();
-
+            if (NoTankLeft())
+                m_Tanks[0].lifeLeft--;
             // If there is a winner, increment their score.
             if (m_RoundWinner != null)
                 m_RoundWinner.m_Wins++;
@@ -262,25 +271,12 @@ namespace Complete
         // Returns a string message to display at the end of each round.
         private string EndMessage()
         {
-            // By default when a round ends there are no winners so the default end message is a draw.
-            string message = "DRAW!";
+            string message = "<color=#" + ColorUtility.ToHtmlStringRGB(Color.red) + ">YOU DEAD!</color>";
 
-            // If there is a winner then change the message to reflect that.
-            if (m_RoundWinner != null)
-                message = m_RoundWinner.m_ColoredPlayerText + " WINS THE ROUND!";
-
-            // Add some line breaks after the initial message.
-            message += "\n\n\n\n";
-
-            // Go through all the tanks and add each of their scores to the message.
-            for (int i = 0; i < m_Tanks.Length; i++)
-            {
-                message += m_Tanks[i].m_ColoredPlayerText + ": " + m_Tanks[i].m_Wins + " WINS\n";
-            }
-
-            // If there is a game winner, change the entire message to reflect that.
-            if (m_GameWinner != null)
-                message = m_GameWinner.m_ColoredPlayerText + " WINS THE GAME!";
+            if (RemainTime < 0)
+                message = "<color=#" + ColorUtility.ToHtmlStringRGB(Color.blue) + ">YOU SURIVE!</color>";
+            if(m_Tanks[0].lifeLeft == 0)
+                message = "<color=#" + ColorUtility.ToHtmlStringRGB(Color.red) + ">GAME OVER!</color>";
 
             return message;
         }
@@ -330,5 +326,15 @@ namespace Complete
             }
         }
 
+        public void SubmitScore(int score)
+        {
+            if (PlayerPrefs.HasKey("highestScore"))
+            {
+                int highestScore = PlayerPrefs.GetInt("highestScore");
+                if (highestScore < score)
+                    PlayerPrefs.SetInt("highestScore", score);
+            }else
+                PlayerPrefs.SetInt("highestScore", score);
+        }
     }
 }

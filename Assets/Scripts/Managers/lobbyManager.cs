@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 [System.Serializable]
 public class lobbyManager : MonoBehaviour {
-    Canvas canvas;
     public Text setttingTitle;
     public int mode;
 
@@ -16,6 +15,7 @@ public class lobbyManager : MonoBehaviour {
 
     public Button btn_place1;
     public Button btn_place2;
+    public Text HighestScoreText;
 
     private PlayerProgrss playerProgess;
 
@@ -32,13 +32,21 @@ public class lobbyManager : MonoBehaviour {
         btn_normal.gameObject.SetActive(false);
         btn_hard.interactable = false;
         btn_hard.gameObject.SetActive(false);
-        canvas = GetComponent<Canvas>();
         getMode();
+
+        if (PlayerPrefs.HasKey("highestScore"))
+        {
+            playerProgess.higestScose = PlayerPrefs.GetInt("highestScore");
+        }
+        else
+            playerProgess.higestScose = 0;
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 
+        HighestScoreText.text = "Highest Score : " + playerProgess.higestScose;
     }
 
     public void EasyLvl() {
