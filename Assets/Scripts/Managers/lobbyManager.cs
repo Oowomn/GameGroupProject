@@ -51,19 +51,19 @@ public class lobbyManager : MonoBehaviour {
 
     public void EasyLvl() {
         Debug.Log("Easy");
-        submitGameLevel(0);
+        submitGameLevel(1);
         SetMode();
     }
     public void NormalLvl()
     {
         Debug.Log("Normal");
-        submitGameLevel(1);
+        submitGameLevel(2);
         SetMode();
     }
     public void HardLvl()
     {
         Debug.Log("Hard");
-        submitGameLevel(2);
+        submitGameLevel(3);
         SetMode();
         
     }

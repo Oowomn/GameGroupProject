@@ -88,22 +88,25 @@ namespace Complete
         }
 		private void SpawnAllEnemy()
 		{
-			
+            int looplimit = m_Enemys.Length < m_gameLevel ? m_Enemys.Length : m_gameLevel;
+            
+            for (int i = 0; i < looplimit; i++)
+            {
+                CompleteProject.EnemyManager enemy = m_Enemys[i];
+                enemy.StartSpawn();
+            }
+        }
 
-			//m_Enemy.Setup ();
-			//for (int i = 0; i < m_Enemys.Length; i++)
-			//{
-			//	m_Enemys[i] = new CompleteProject.EnemyManager();
-				//
-			//	m_Enemys[i].enemy = Instantiate(m_EnemyPrefab,
-			//		new Vector3(m_Tanks[0].m_SpawnPoint.transform.position.x+Random.Range(-30,30),0,m_Tanks[0].m_SpawnPoint.transform.position.z+Random.Range(-30,30)),
-			//			m_Tanks[0].m_SpawnPoint.rotation)
-			//		as GameObject;
-			//}
+        private void RemoveAllEnemies()
+        {
+            int looplimit = m_Enemys.Length < m_gameLevel ?  m_Enemys.Length : m_gameLevel;
 
-
-		}
-
+            for (int i = 0; i < looplimit; i++)
+            {
+                CompleteProject.EnemyManager enemy = m_Enemys[i];
+                enemy.EndSpawn();
+            }
+        }
 
         private void SetCameraTargets()
         {
@@ -156,7 +159,7 @@ namespace Complete
             // As soon as the round starts reset the tanks and make sure they can't move.
             ResetAllTanks ();
             DisableTankControl ();
-			m_Enemy.StartSpawn ();
+            SpawnAllEnemy();
             // Snap the camera's zoom and position to something appropriate for the reset tanks.
             m_CameraControl.SetStartPositionAndSize ();
 
@@ -191,7 +194,7 @@ namespace Complete
 			
             // Stop tanks from moving.
             DisableTankControl ();
-			m_Enemy.EndSpawn ();
+            RemoveAllEnemies();
 
             if (NoTankLeft())
                 m_Tanks[0].lifeLeft--;
