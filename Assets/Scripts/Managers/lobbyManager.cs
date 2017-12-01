@@ -85,6 +85,7 @@ public class lobbyManager : MonoBehaviour {
     public void place2()
     {
         Debug.Log("place2");
+        SavePlayerProgress();
         PlayerPrefs.SetInt("map", 2);
         SceneManager.LoadScene("development");
     }
@@ -152,7 +153,7 @@ public class lobbyManager : MonoBehaviour {
         }
         else
         {
-            setttingTitle.text = "ATTACK ON ZOMBIES";
+            setttingTitle.text = "ATTACK ON ZOMBIES \n Welcome";
             btn_start.interactable = true;
             btn_start.gameObject.SetActive(true);
 
