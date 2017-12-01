@@ -17,8 +17,21 @@ public class lobbyManager : MonoBehaviour {
     public Button btn_place1;
     public Button btn_place2;
 
+    private PlayerProgrss playerProgess;
+
     // Use this for initialization
     void Start () {
+        playerProgess = new PlayerProgrss();
+        btn_place1.interactable = false;
+        btn_place1.gameObject.SetActive(false);
+        btn_place2.interactable = false;
+        btn_place2.gameObject.SetActive(false);
+        btn_easy.interactable = false;
+        btn_easy.gameObject.SetActive(false);
+        btn_normal.interactable = false;
+        btn_normal.gameObject.SetActive(false);
+        btn_hard.interactable = false;
+        btn_hard.gameObject.SetActive(false);
         canvas = GetComponent<Canvas>();
         getMode();
     }
@@ -30,22 +43,27 @@ public class lobbyManager : MonoBehaviour {
 
     public void EasyLvl() {
         Debug.Log("Easy");
+        submitGameLevel(0);
         SetMode();
     }
     public void NormalLvl()
     {
         Debug.Log("Normal");
-        
+        submitGameLevel(1);
+        SetMode();
     }
     public void HardLvl()
     {
         Debug.Log("Hard");
+        submitGameLevel(2);
         SetMode();
+        
     }
 
     public void place1()
     {
         Debug.Log("place1");
+        SavePlayerProgress();
         SceneManager.LoadScene("development");
     }
     public void place2()
@@ -121,6 +139,16 @@ public class lobbyManager : MonoBehaviour {
             Debug.Log("quit");
             Application.Quit();
         }
+    }
+
+    public void submitGameLevel(int gameLevel)
+    {
+        playerProgess.gameLevel = gameLevel;
+    }
+
+    private void SavePlayerProgress()
+    {
+        PlayerPrefs.SetInt("gameLevel", playerProgess.gameLevel);
     }
 
 }

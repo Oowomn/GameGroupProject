@@ -32,9 +32,12 @@ namespace Complete
         private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
 		public GameObject sphere;
 
+        private int m_gameLevel; //0:easy; 1:normal; 2:hard 
+
         public Canvas menu;
         private void Start()
         {
+            LoadPlayerPerf();
             // Create the delays so they only have to be made once.
             m_StartWait = new WaitForSeconds (m_StartDelay);
             m_EndWait = new WaitForSeconds (m_EndDelay);
@@ -317,5 +320,15 @@ namespace Complete
             else
                 EnableTankControl();
         }
+
+        public void LoadPlayerPerf()
+        {
+            if (PlayerPrefs.HasKey("gameLevel"))
+            {
+                m_gameLevel = PlayerPrefs.GetInt("gameLevel");
+                Debug.Log("game level:"+m_gameLevel);
+            }
+        }
+
     }
 }
