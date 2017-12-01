@@ -45,7 +45,7 @@ namespace Complete
 			//UnityEngine.Random.seed = this.GetHashCode();
             SpawnAllTanks();
 			SpawnAllEnemy();
-            SetCameraTargets();
+            //SetCameraTargets();
 
             // Once the tanks have been created and the camera is using them as targets, start the game.
             StartCoroutine (GameLoop ());
@@ -162,7 +162,7 @@ namespace Complete
             DisableTankControl ();
             SpawnAllEnemy();
             // Snap the camera's zoom and position to something appropriate for the reset tanks.
-            m_CameraControl.SetStartPositionAndSize ();
+            //m_CameraControl.SetStartPositionAndSize ();
 
             // Increment the round number and display text showing the players what round it is.
             m_RoundNumber++;
