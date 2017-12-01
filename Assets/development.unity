@@ -1409,8 +1409,8 @@ GameObject:
   - component: {fileID: 939010891}
   - component: {fileID: 939010890}
   - component: {fileID: 939010889}
-  - component: {fileID: 939010888}
   - component: {fileID: 939010894}
+  - component: {fileID: 939010888}
   m_Layer: 5
   m_Name: MenuCanvas
   m_TagString: Untagged
