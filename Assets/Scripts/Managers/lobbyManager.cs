@@ -72,11 +72,14 @@ public class lobbyManager : MonoBehaviour {
     {
         Debug.Log("place1");
         SavePlayerProgress();
+        PlayerPrefs.SetInt("map", 1);
         SceneManager.LoadScene("development");
     }
     public void place2()
     {
         Debug.Log("place2");
+        PlayerPrefs.SetInt("map", 2);
+        SceneManager.LoadScene("development");
     }
 
     void SetMode()
