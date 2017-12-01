@@ -48,7 +48,7 @@ namespace Complete
         public void TakeDamage (float amount)
         {
             // Reduce current health by the amount of damage done.
-            m_CurrentHealth -= amount;
+			m_CurrentHealth -= amount * (float) 0.2;
 
             // Change the UI elements appropriately.
             SetHealthUI ();

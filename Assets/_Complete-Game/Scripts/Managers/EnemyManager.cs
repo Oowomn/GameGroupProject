@@ -8,7 +8,7 @@ namespace CompleteProject
     {
 		//private Complete.TankHealth playerHealth;       // Reference to the player's heatlh.
         public GameObject enemy;                // The enemy prefab to be spawned.
-        public float spawnTime = 3f;            // How long between each spawn.
+        public float spawnTime = 50f;            // How long between each spawn.
         //public Transform[] spawnPoints;         // An array of the spawn points this enemy can spawn from.
 		private GameObject player; 
 		public List<GameObject> enemylist;
