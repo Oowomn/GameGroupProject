@@ -28,8 +28,7 @@ namespace Complete
         private int m_RoundNumber;                  // Which round the game is currently on.
         private WaitForSeconds m_StartWait;         // Used to have a delay whilst the round starts.
         private WaitForSeconds m_EndWait;           // Used to have a delay whilst the round or game ends.
-        private TankManager m_RoundWinner;          // Reference to the winner of the current round.  Used to make an announcement of who won.
-        private TankManager m_GameWinner;           // Reference to the winner of the game.  Used to make an announcement of who won.
+
 		public GameObject sphere;
         public Text LifeLeft;
         private int m_gameLevel; //0:easy; 1:normal; 2:hard 
@@ -193,20 +192,10 @@ namespace Complete
             // Stop tanks from moving.
             DisableTankControl ();
 			m_Enemy.EndSpawn ();
-            // Clear the winner from the previous round.
-            m_RoundWinner = null;
 
-            // See if there is a winner now the round is over.
-            m_RoundWinner = GetRoundWinner ();
             if (NoTankLeft())
                 m_Tanks[0].lifeLeft--;
-            // If there is a winner, increment their score.
-            if (m_RoundWinner != null)
-                m_RoundWinner.m_Wins++;
 
-            // Now the winner's score has been incremented, see if someone has one the game.
-            m_GameWinner = GetGameWinner ();
-			//foreach ( m_tanks
             // Get a message based on the scores and whether or not there is a game winner and display it.
             string message = EndMessage ();
             m_MessageText.text = message;
