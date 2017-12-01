@@ -85,6 +85,7 @@ namespace Complete
 				sphere = GameObject.FindGameObjectWithTag ("sphere");
 				sphere.GetComponent<mapPoint> ().target = m_Tanks [i].m_Instance;
             }
+			GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ().targetDisplay = 0;
         }
 		private void SpawnAllEnemy()
 		{

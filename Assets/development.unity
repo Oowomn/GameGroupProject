@@ -242,6 +242,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114946911065547408, guid: 27eb8a3ec63a54591aa67e3cf30b879f,
+        type: 2}
+      propertyPath: inputCode
+      value: 109
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 27eb8a3ec63a54591aa67e3cf30b879f, type: 2}
   m_IsPrefabParent: 0
@@ -3144,12 +3149,12 @@ Prefab:
     - target: {fileID: 224230048040817010, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 22.58
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224230048040817010, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 945.5
+      value: 1125
       objectReference: {fileID: 0}
     - target: {fileID: 224230048040817010, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
         type: 2}
@@ -3270,6 +3275,36 @@ Prefab:
         type: 2}
       propertyPath: m_PreserveAspect
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816698028225522, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.37254906
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816698028225522, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816698028225522, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
+        type: 2}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.5066937
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816698028225522, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.74264705
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816698028225522, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.55433446
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816698028225522, guid: f72601c04a9a24c2a94c5d4c1a0648eb,
+        type: 2}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.136516
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f72601c04a9a24c2a94c5d4c1a0648eb, type: 2}
@@ -3409,6 +3444,7 @@ GameObject:
   - component: {fileID: 2147063177}
   - component: {fileID: 2147063176}
   - component: {fileID: 2147063180}
+  - component: {fileID: 2147063181}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -3457,7 +3493,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -3490,3 +3526,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95afcdabecbb334eb78f8c58daa4a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2147063181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2147063175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5bd1cd2ce4347faaa0e5ccdf7c6fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thiscamera: {fileID: 2147063178}
+  inputCode: 9
